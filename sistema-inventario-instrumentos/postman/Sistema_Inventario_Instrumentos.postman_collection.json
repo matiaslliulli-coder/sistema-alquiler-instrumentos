@@ -1,0 +1,528 @@
+{
+  "info": {
+    "name": "Sistema de Inventario de Instrumentos - Matías (semanas 1 a 4)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "0. Comprobación",
+      "item": [
+        {
+          "name": "Ping (API + PostgreSQL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ping",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ping"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Catálogos (para ver los códigos)",
+      "item": [
+        {
+          "name": "Categorías con subcategorías",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "categorias"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Marcas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/marcas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "marcas"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ciudades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ciudades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ciudades"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Semana 3 - Inventario",
+      "item": [
+        {
+          "name": "Registrar instrumento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombreInstrumento\": \"Guitarra clásica\",\n  \"codSubcategoria\": 1,\n  \"codMarca\": 1,\n  \"modeloInstrumento\": \"CG-142\",\n  \"codTienda\": 1,\n  \"precioAlquiler\": 26.5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar todos los instrumentos activos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener instrumento por código",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos/INS-000001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos",
+                "INS-000001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Registrar instrumento en mantenimiento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/mantenimientos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "mantenimientos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codInstrumento\": \"INS-000001\",\n  \"descripcionDano\": \"Cuerdas rotas y golpe en la tapa\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar mantenimientos en proceso",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mantenimientos?estado=EN_PROCESO",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "mantenimientos"
+              ],
+              "query": [
+                {
+                  "key": "estado",
+                  "value": "EN_PROCESO"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Cerrar mantenimiento (cambia el código 1 si hace falta)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/mantenimientos/1/cerrar",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "mantenimientos",
+                "1",
+                "cerrar"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trabajoRealizado\": \"Cambio de cuerdas y reparación de la tapa\",\n  \"costoReparacion\": 85.0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Semana 4 - Tiendas, búsqueda, precios y Haversine",
+      "item": [
+        {
+          "name": "Listar tiendas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tiendas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tiendas"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Registrar tienda",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/tiendas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tiendas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombreTienda\": \"Tienda Miraflores\",\n  \"codCiudad\": 1,\n  \"direccionTienda\": \"Av. Busch 1500, Miraflores\",\n  \"telefonoTienda\": \"22007777\",\n  \"latitudTienda\": -16.5,\n  \"longitudTienda\": -68.11,\n  \"responsableTienda\": \"Pedro Vargas\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Buscar disponibles: tipo Guitarra en La Paz",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos/buscar?tipo=Guitarra&ciudad=La Paz",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos",
+                "buscar"
+              ],
+              "query": [
+                {
+                  "key": "tipo",
+                  "value": "Guitarra"
+                },
+                {
+                  "key": "ciudad",
+                  "value": "La Paz"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Buscar disponibles: categoría Viento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos/buscar?categoria=Viento",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos",
+                "buscar"
+              ],
+              "query": [
+                {
+                  "key": "categoria",
+                  "value": "Viento"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Comparar precios: Guitarra acústica Yamaha C40",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos/comparar-precios?nombre=Guitarra acústica&marca=Yamaha&modelo=C40",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos",
+                "comparar-precios"
+              ],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "Guitarra acústica"
+                },
+                {
+                  "key": "marca",
+                  "value": "Yamaha"
+                },
+                {
+                  "key": "modelo",
+                  "value": "C40"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Comparar precios desde un instrumento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos/INS-000002/comparar-precios",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos",
+                "INS-000002",
+                "comparar-precios"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Tiendas cercanas con guitarras (desde Plaza Isabel la Católica)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tiendas/cercanas?latitud=-16.5&longitud=-68.13&tipo=Guitarra",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tiendas",
+                "cercanas"
+              ],
+              "query": [
+                {
+                  "key": "latitud",
+                  "value": "-16.5"
+                },
+                {
+                  "key": "longitud",
+                  "value": "-68.13"
+                },
+                {
+                  "key": "tipo",
+                  "value": "Guitarra"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Tiendas cercanas en un radio de 10 km",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/tiendas/cercanas?latitud=-16.5&longitud=-68.13&radioKm=10&limite=3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tiendas",
+                "cercanas"
+              ],
+              "query": [
+                {
+                  "key": "latitud",
+                  "value": "-16.5"
+                },
+                {
+                  "key": "longitud",
+                  "value": "-68.13"
+                },
+                {
+                  "key": "radioKm",
+                  "value": "10"
+                },
+                {
+                  "key": "limite",
+                  "value": "3"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Pruebas de errores",
+      "item": [
+        {
+          "name": "Registrar instrumento con datos inválidos (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombreInstrumento\": \"\",\n  \"precioAlquiler\": -5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Instrumento inexistente (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/instrumentos/INS-999999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "instrumentos",
+                "INS-999999"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
