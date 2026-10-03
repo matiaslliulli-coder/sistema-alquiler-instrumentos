@@ -1,0 +1,29 @@
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.encabezado { background: var(--color-primario); color: #fff; box-shadow: var(--sombra); }
+.encabezado-interno { max-width: 1100px; margin: 0 auto; padding: var(--espacio-3) var(--espacio-4); display: flex; align-items: center; gap: var(--espacio-4); flex-wrap: wrap; }
+.marca { font-size: 1.15rem; font-weight: 700; color: #fff; text-decoration: none; display: flex; align-items: center; gap: var(--espacio-2); }
+.menu { display: flex; gap: var(--espacio-1); margin-left: auto; flex-wrap: wrap; }
+.menu a { color: #f3dcdf; text-decoration: none; padding: 7px 12px; border-radius: 8px; font-weight: 600; }
+.menu a:hover { background: rgba(255, 255, 255, 0.12); }
+.menu a.activo { background: #fff; color: var(--color-primario); }
+.modo { font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.18); }
+.contenido { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: var(--espacio-5) var(--espacio-4); }
+.pie { text-align: center; color: var(--color-texto-suave); font-size: 0.82rem; padding: var(--espacio-4); }
+.aviso-prueba { background: #fff7e0; border: 1px solid #ecd98d; color: #6a5300; border-radius: var(--radio); padding: var(--espacio-3) var(--espacio-4); margin-bottom: var(--espacio-4); font-size: 0.9rem; }
+.mapa { height: 420px; border-radius: var(--radio); border: 1px solid var(--color-borde); }
+.migas { font-size: 0.88rem; margin-bottom: var(--espacio-3); }
+.tabla { width: 100%; border-collapse: collapse; }
+.tabla th, .tabla td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--color-borde); }
+.tabla th { font-size: 0.8rem; color: var(--color-texto-suave); text-transform: uppercase; }
+.dos-columnas { display: grid; gap: var(--espacio-4); grid-template-columns: 1fr 1fr; }
+@media (max-width: 760px) { .dos-columnas { grid-template-columns: 1fr; } .menu { margin-left: 0; } }
+.fondo-imagen {
+    background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: #1a1a1a; /* Rellena los bordes con un tono oscuro acorde a la foto */
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+}
