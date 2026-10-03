@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+*.log
+.DS_Store
+# Nunca subir credenciales reales
+.env
+application-local.properties
